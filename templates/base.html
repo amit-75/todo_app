@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO App -Flask</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    </head>
+    <body style="background-color:rgb(63, 104, 153)">
+    <div class="ui container" >
+        <h1 style="margin-top:50px" class="ui center aligned header">NOTEPAD</h1>
+        <form class="ui form" action="/Add" method='POST'>
+            <div class="field">
+                <h2 for="title">Todo title</h2><br>
+                <input type="text" name="todo" placeholder="Enter todo...."><br>
+                <input class="ui blue button" type="submit" value="ADD" >
+            </div>
+        </form>
+        <div class="ui segment" style="background-color:rgb(255, 255, 255)">
+            {% for a_item in items %}
+                <p class="ui big header">{{a_item.id}} | {{a_item.title}}</p>
+
+                {% if a_item.complete == False %}
+                    <span class="ui grey label">Not Complete</span>
+                {% else %}
+                    <span class="ui green label">Complete</span>
+                {% endif %}
+                <a class="ui blue button" href="/update/{{a_item.id}}">Update</a>
+                <a class="ui red button" href="/delete/{{a_item.id}}">Delete</a>
+            {% endfor %}
+        </div>
+    </div>
+    </body>
+</html>
